@@ -11,5 +11,9 @@
     "discord"
   ],
   "author": "Syntax Error",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.0.1",
+    "express": "^4.17.1"
+  }
 }
