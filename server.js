@@ -1,6 +1,16 @@
 const Discord = require("discord.js");
 const client = new Discord.Client();
 const { prefix, token } = require("./config.json");
+const request = require("request");
+
+function ledOn() {
+  request.get("http://192.168.0.9:3000/led").on("response", function(response) {
+    console.log(response);
+    console.log(response.statusCode); // 200
+    console.log(response.headers["content-type"]); // 'image/png'
+  });
+}
+
 // const request = require('request');
 const mongoose = require("mongoose");
 mongoose.connect("mongodb://localhost/local", {
@@ -31,6 +41,7 @@ client.on("message", msg => {
     msg.channel.send(`Info del server: ${msg.guild.name}`);
   } else if (msg.content === `${prefix}led`) {
     msg.reply("Esto se prendera!");
+    ledOn();
   } else if (msg.content === `${prefix}topics`) {
     let Topic = mongoose.model("Topic", topicSchema);
 
